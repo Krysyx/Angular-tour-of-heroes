@@ -27,8 +27,8 @@ export class HeroService {
       .pipe(catchError(this.handleError("getHeroes", [])));
   }
 
-  getHero(id: number) {
-    this.http
+  getHero(id: number): Observable<any> {
+    return this.http
       .get<Hero>(`${this.url}/${id}`)
       .pipe(catchError(this.handleError(`getHero id=${id}`)));
   }
