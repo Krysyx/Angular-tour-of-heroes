@@ -4,6 +4,7 @@
     <a routerLink="/hero/{{ hero.id }}">
       <span>{{ hero.id }} : </span> <span>{{ hero.name }} </span></a
     >
+    <button class="delete" (click)="deleteHero(hero)">Delete</button>
   </li>
 
   <div>
