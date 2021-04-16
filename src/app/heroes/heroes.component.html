@@ -5,4 +5,14 @@
       <span>{{ hero.id }} : </span> <span>{{ hero.name }} </span></a
     >
   </li>
+
+  <div>
+    <div>Add an Hero</div>
+    <label id="new-hero">Hero name :</label>
+    <input for="new-hero" type="text" #heroName />
+
+    <button class="add-button" (click)="addHero(heroName.value); heroName.value = ''">
+      Add
+    </button>
+  </div>
 </ul>

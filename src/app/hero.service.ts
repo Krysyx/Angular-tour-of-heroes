@@ -10,6 +10,10 @@ import { MessageService } from "./message.service";
 })
 export class HeroService {
   url: string = "/api/heroes";
+  contentType = {
+    headers: new HttpHeaders({ "Content-Type": "application/json" }),
+  };
+
   constructor(private http: HttpClient, private messageService: MessageService) {}
 
   private handleError<T>(message: string, result?: T) {
@@ -33,13 +37,16 @@ export class HeroService {
   }
 
   updateHero(hero: Hero): Observable<any> {
-    return this.http
-      .put(this.url, hero, {
-        headers: new HttpHeaders({ "Content-Type": "application/json" }),
-      })
-      .pipe(
-        tap(() => console.log("HERO UPDATED")),
-        catchError(this.handleError("updateHero"))
-      );
+    return this.http.put(this.url, hero, this.contentType).pipe(
+      tap(() => console.log("HERO UPDATED")),
+      catchError(this.handleError("updateHero"))
+    );
+  }
+
+  add(hero: Hero): Observable<Hero> {
+    return this.http.post<Hero>(this.url, hero, this.contentType).pipe(
+      tap(({ id }: Hero) => console.log(`New hero added, id: ${id}`)),
+      catchError(this.handleError<Hero>("addHero"))
+    );
   }
 }
