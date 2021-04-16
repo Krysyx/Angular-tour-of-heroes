@@ -55,4 +55,17 @@ export class HeroService {
       .delete(`${this.url}/${id}`, this.contentType)
       .pipe(catchError(this.handleError("deleteHero")));
   }
+
+  searchByName(term: string): Observable<any> {
+    return !term.trim()
+      ? of([])
+      : this.http.get(`${this.url}/?name=${term}`).pipe(
+          tap((results: Hero[] | []) =>
+            results.length
+              ? console.log(`Found ${results.length > 1 ? "heroes" : "a hero"} matching`)
+              : console.log("No results")
+          ),
+          catchError(this.handleError("searchByName"))
+        );
+  }
 }
