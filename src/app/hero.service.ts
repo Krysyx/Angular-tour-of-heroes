@@ -43,12 +43,12 @@ export class HeroService {
     );
   }
 
-  // updateHero(hero: Hero): Observable<any> {
-  //   return this.http.put(this.url, hero, this.contentType).pipe(
-  //     tap(() => console.log("HERO UPDATED")),
-  //     catchError(this.handleError("updateHero"))
-  //   );
-  // }
+  updateHero(hero: Hero): Observable<any> {
+    return this.http.put(`${api}/heroes/update`, hero, this.contentType).pipe(
+      tap(() => console.log("HERO UPDATED")),
+      catchError(this.handleError("updateHero"))
+    );
+  }
 
   delete(id: string): Observable<any> {
     return this.http
