@@ -9,6 +9,7 @@ import { HeroDetailComponent } from "./hero-detail/hero-detail.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HeroSearchComponent } from "./hero-search/hero-search.component";
+import { CreateHeroComponent } from './create-hero/create-hero.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HeroSearchComponent } from "./hero-search/hero-search.component";
     MessagesComponent,
     DashboardComponent,
     HeroSearchComponent,
+    CreateHeroComponent,
   ],
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule],
   providers: [],
