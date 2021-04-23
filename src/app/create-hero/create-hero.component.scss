@@ -5,7 +5,38 @@
   }
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
+.form {
+  &-group {
+    display: flex;
+    flex-direction: column;
+
+    &-spells {
+      display: flex;
+      flex-direction: column;
+      margin-top: 1rem;
+    }
+  }
+
+  &-control {
+    margin-top: 1rem;
+  }
+}
+
+.submit-hero {
+  margin-top: 1rem;
+  width: 100px;
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+input {
+  width: 150px;
+}
+
+h2 {
+  margin-bottom: 0;
+}
+
+h3 {
+  margin-bottom: 0;
 }

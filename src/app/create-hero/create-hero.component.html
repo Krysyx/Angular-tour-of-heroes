@@ -1,9 +1,29 @@
 <h2>Create your Own Super-Hero</h2>
 <div>
-  <form class="form-group" [formGroup]="heroForm">
+  <form class="form-group" [formGroup]="heroForm" (ngSubmit)="onSubmit()">
+    <h3>Overview :</h3>
     <label *ngFor="let input of inputs" class="form-control">
       <span class="hero-keys">{{ input.toUpperCase() }} : </span>
-      <input type="text" formControlName="{{ input }}" />
+      <input
+        *ngIf="input !== 'name'; else nameInput"
+        type="text"
+        formControlName="{{ input }}"
+      />
+      <ng-template #nameInput>
+        <input type="text" formControlName="{{ input }}" required />
+      </ng-template>
     </label>
+
+    <div formGroupName="spells">
+      <h3>Spells :</h3>
+
+      <label class="form-group-spells" *ngFor="let spell of spells">
+        <span class="hero-keys">{{ spell.toUpperCase() }}</span>
+        <input type="text" formControlName="{{ spell }}" />
+      </label>
+    </div>
+
+    <p>Form Status : {{ heroForm.status }}</p>
+    <button class="submit-hero" type="submit" [disabled]="!heroForm.valid">Submit</button>
   </form>
 </div>
