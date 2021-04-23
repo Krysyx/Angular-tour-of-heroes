@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, Validators } from "@angular/forms";
+import { FormArray, FormBuilder, Validators } from "@angular/forms";
 import hs from "../utils/heroStats";
 
 @Component({
@@ -17,7 +17,7 @@ export class CreateHeroComponent implements OnInit {
       offensive: [""],
       defensive: [""],
     }),
-    downRanks: this.formBuilder.array([this.formBuilder.control(null)]),
+    downRanks: this.formBuilder.array([this.formBuilder.control("")]),
   });
 
   inputs: string[] = Object.keys(this.heroForm.controls).filter((key) =>
@@ -40,6 +40,10 @@ export class CreateHeroComponent implements OnInit {
   }
 
   getDownRanks() {
-    return this.heroForm.get("downRanks");
+    return this.heroForm.get("downRanks") as FormArray;
+  }
+
+  addDownRank() {
+    this.getDownRanks().push(this.formBuilder.control(""));
   }
 }

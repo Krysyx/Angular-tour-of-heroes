@@ -5,12 +5,12 @@
     <label *ngFor="let input of inputs" class="form-control">
       <span class="hero-keys">{{ input.toUpperCase() }} : </span>
       <input
-        *ngIf="input !== 'name'; else nameInput"
+        *ngIf="input !== 'name'; else required"
         type="text"
         formControlName="{{ input }}"
       />
-      <ng-template #nameInput>
-        <input type="text" formControlName="{{ input }}" required />
+      <ng-template #required>
+        <input type="text" [formControlName]="input" required />
       </ng-template>
     </label>
 
@@ -19,8 +19,19 @@
 
       <label class="form-group-spells" *ngFor="let spell of spells">
         <span class="hero-keys">{{ spell.toUpperCase() }}</span>
-        <input type="text" formControlName="{{ spell }}" />
+        <input type="text" [formControlName]="spell" />
       </label>
+    </div>
+
+    <div formArrayName="downRanks">
+      <h3>Downranks :</h3>
+      <button (click)="addDownRank()">Add Downrank :</button>
+      <div *ngFor="let downRank of getDownRanks().controls; let index = index">
+        <label>
+          Rank :
+          <input type="text" [formControlName]="index" />
+        </label>
+      </div>
     </div>
 
     <p>Form Status : {{ heroForm.status }}</p>
