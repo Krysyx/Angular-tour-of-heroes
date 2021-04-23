@@ -1,0 +1,11 @@
+.hero {
+  &-keys {
+    color: #369;
+    font-weight: bold;
+  }
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}

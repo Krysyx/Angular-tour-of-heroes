@@ -1,1 +1,9 @@
-<p>create-hero works!</p>
+<h2>Create your Own Super-Hero</h2>
+<div>
+  <form class="form-group" [formGroup]="heroForm">
+    <label *ngFor="let input of inputs" class="form-control">
+      <span class="hero-keys">{{ input.toUpperCase() }} : </span>
+      <input type="text" formControlName="{{ input }}" />
+    </label>
+  </form>
+</div>
