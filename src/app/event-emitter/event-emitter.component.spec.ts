@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ReactiveFormsComponent } from './reactive-forms.component';
+import { EventEmitterComponent } from './event-emitter.component';
 
-describe('ReactiveFormsComponent', () => {
-  let component: ReactiveFormsComponent;
-  let fixture: ComponentFixture<ReactiveFormsComponent>;
+describe('EventEmitterComponent', () => {
+  let component: EventEmitterComponent;
+  let fixture: ComponentFixture<EventEmitterComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ReactiveFormsComponent ]
+      declarations: [ EventEmitterComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ReactiveFormsComponent);
+    fixture = TestBed.createComponent(EventEmitterComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
