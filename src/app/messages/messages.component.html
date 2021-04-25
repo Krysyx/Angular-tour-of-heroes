@@ -3,3 +3,9 @@
   <button class="clear" (click)="messageService.clear()">Clear Messages</button>
   <div *ngFor="let message of messageService.messages">{{ message }}</div>
 </div>
+
+<ul *ngIf="items.length">
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+<app-event-emitter [item]="currentItem" (newItem)="addItem($event)"></app-event-emitter>

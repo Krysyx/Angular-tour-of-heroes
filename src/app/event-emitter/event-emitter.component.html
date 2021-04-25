@@ -1,1 +1,12 @@
-<p>event-emitter works!</p>
+<div class="event-container">
+  <label
+    >Choose an item to add :
+    <div>
+      <input class="event-input" type="text" name="newItem" #newItem />
+    </div>
+  </label>
+
+  <button class="add-button" (click)="addItem(newItem.value)">
+    Add the chosen item !
+  </button>
+</div>
