@@ -23,16 +23,16 @@
       </label>
     </div>
 
-    <div formArrayName="downRanks">
+    <!-- <div formArrayName="downRanks">
       <h3>Downranks :</h3>
-      <button (click)="addDownRank()">Add Downrank :</button>
+      <button class="add-downrank" (click)="addDownRank()">Add Downrank :</button>
       <div *ngFor="let downRank of getDownRanks().controls; let index = index">
         <label>
           Rank :
           <input type="text" [formControlName]="index" />
         </label>
       </div>
-    </div>
+    </div> -->
 
     <p>Form Status : {{ heroForm.status }}</p>
     <button class="submit-hero" type="submit" [disabled]="!heroForm.valid">Submit</button>

@@ -1,20 +1,16 @@
+import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Hero } from "./models/hero";
 import { Observable, of } from "rxjs";
 import { catchError, tap } from "rxjs/operators";
-import { HttpClient, HttpHeaders } from "@angular/common/http";
-import { MessageService } from "./message.service";
-import { api } from "./api/api";
+import { api } from "../api/api";
+import { Hero } from "../models/hero";
+import contentType from "../utils/contentType";
 
 @Injectable({
   providedIn: "root",
 })
 export class HeroService {
-  contentType = {
-    headers: new HttpHeaders({ "Content-Type": "application/json" }),
-  };
-
-  constructor(private http: HttpClient, private messageService: MessageService) {}
+  constructor(private http: HttpClient) {}
 
   private handleError<T>(message: string, result?: T) {
     return (error: any) => {
@@ -37,14 +33,14 @@ export class HeroService {
   }
 
   add(hero: Hero): Observable<Hero> {
-    return this.http.post<Hero>(`${api}/heroes/create`, hero, this.contentType).pipe(
+    return this.http.post<Hero>(`${api}/heroes/create`, hero, contentType).pipe(
       tap(({ id }: Hero) => console.log(`New hero added, id: ${id}`)),
       catchError(this.handleError<Hero>("addHero"))
     );
   }
 
   updateHero(hero: Hero): Observable<any> {
-    return this.http.put(`${api}/heroes/update`, hero, this.contentType).pipe(
+    return this.http.put(`${api}/heroes/update`, hero, contentType).pipe(
       tap(() => console.log("HERO UPDATED")),
       catchError(this.handleError("updateHero"))
     );
@@ -52,7 +48,7 @@ export class HeroService {
 
   delete(id: string): Observable<any> {
     return this.http
-      .delete(`${api}/heroes/${id}`, this.contentType)
+      .delete(`${api}/heroes/${id}`, contentType)
       .pipe(catchError(this.handleError("deleteHero")));
   }
 

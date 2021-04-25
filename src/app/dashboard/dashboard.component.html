@@ -2,3 +2,9 @@
 <div class="heroes-menu">
   <a *ngFor="let hero of heroes" routerLink="/hero/{{ hero.id }}">{{ hero.name }}</a>
 </div>
+
+<ul *ngIf="items.length">
+  <li *ngFor="let item of items">{{ item }}</li>
+</ul>
+
+<app-event-emitter [item]="currentItem" (newItem)="addItem($event)"></app-event-emitter>
