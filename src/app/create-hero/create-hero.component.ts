@@ -33,12 +33,14 @@ export class CreateHeroComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    const result = Object.entries(this.heroForm.controls).map(([key, { value }]) => [
+    const values = Object.entries(this.heroForm.controls).map(([key, { value }]) => [
       key,
       value,
     ]);
 
-    this.customService.createCustomHero(Object.fromEntries(result) as CustomHero);
+    this.customService
+      .createCustomHero(Object.fromEntries(values) as CustomHero)
+      .subscribe((customHero) => console.log("Hero created : ", customHero));
   }
 
   updateFields(): void {

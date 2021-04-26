@@ -3,6 +3,8 @@ import { Injectable } from "@angular/core";
 import { CustomHero } from "../models/custom";
 import contentType from "../utils/contentType";
 import { api } from "../api/api";
+import { Observable, of } from "rxjs";
+import { catchError } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
@@ -10,8 +12,18 @@ import { api } from "../api/api";
 export class CustomService {
   constructor(private http: HttpClient) {}
 
-  createCustomHero(hero: CustomHero): void {
-    console.log(hero);
-    // this.http.post<CustomHero>(`${api}/custom/create`, hero, contentType);
+  private errorHandler<T>(message: string) {
+    return (error: any, caught: any) => {
+      console.log(message);
+      console.error(error);
+      return of(caught as T);
+    };
+  }
+
+  createCustomHero(hero: CustomHero): Observable<CustomHero> {
+    console.log("Hero received : ", hero);
+    return this.http
+      .post<CustomHero>(`${api}/custom/create`, hero, contentType)
+      .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));
   }
 }
