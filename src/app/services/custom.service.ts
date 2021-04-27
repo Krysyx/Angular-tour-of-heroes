@@ -21,7 +21,6 @@ export class CustomService {
   }
 
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
-    console.log("Hero received : ", hero);
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
       .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));
