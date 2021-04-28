@@ -25,4 +25,10 @@ export class CustomService {
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
       .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));
   }
+
+  getCustomHeroes(): Observable<CustomHero[]> {
+    return this.http
+      .get<CustomHero[]>(`${api}/custom/`, contentType)
+      .pipe(catchError(this.errorHandler<CustomHero[]>("getCustomHeroes")));
+  }
 }

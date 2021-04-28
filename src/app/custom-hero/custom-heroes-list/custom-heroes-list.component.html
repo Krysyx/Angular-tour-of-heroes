@@ -1,0 +1,7 @@
+<div class="custom-heroes">
+  <ul class="custom-heroes-list">
+    <li class="custom-heroes-item" *ngFor="let hero of customHeroes">
+      <div *ngFor="let item of hero | keyvalue">{{ item.key }} : {{ item.value }}</div>
+    </li>
+  </ul>
+</div>

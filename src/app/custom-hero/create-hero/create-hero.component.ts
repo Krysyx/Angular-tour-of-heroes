@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, Validators } from "@angular/forms";
-import { CustomHero } from "../models/custom";
-import { CustomService } from "../services/custom.service";
-import hs from "../utils/heroStats";
+import { CustomHero } from "../../models/custom";
+import { CustomService } from "../../services/custom.service";
+import hs from "../../utils/heroStats";
 
 @Component({
   selector: "app-create-hero",

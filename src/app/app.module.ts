@@ -9,8 +9,9 @@ import { HeroDetailComponent } from "./hero-detail/hero-detail.component";
 import { MessagesComponent } from "./messages/messages.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { HeroSearchComponent } from "./hero-search/hero-search.component";
-import { CreateHeroComponent } from "./create-hero/create-hero.component";
+import { CreateHeroComponent } from "./custom-hero/create-hero/create-hero.component";
 import { EventEmitterComponent } from "./event-emitter/event-emitter.component";
+import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/custom-heroes-list.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { EventEmitterComponent } from "./event-emitter/event-emitter.component";
     HeroSearchComponent,
     CreateHeroComponent,
     EventEmitterComponent,
+    CustomHeroesListComponent,
   ],
   imports: [
     BrowserModule,
