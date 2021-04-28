@@ -28,7 +28,7 @@ export class CustomService {
 
   getCustomHeroes(): Observable<CustomHero[]> {
     return this.http
-      .get<CustomHero[]>(`${api}/custom/`, contentType)
+      .get<CustomHero[]>(`${api}/custom`, contentType)
       .pipe(catchError(this.errorHandler<CustomHero[]>("getCustomHeroes")));
   }
 }

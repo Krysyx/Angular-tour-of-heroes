@@ -22,7 +22,7 @@ export class HeroService {
 
   getHeroes(): Observable<Hero[]> {
     return this.http
-      .get<Hero[]>(`${api}/heroes/`)
+      .get<Hero[]>(`${api}/heroes`)
       .pipe(catchError(this.handleError("getHeroes", [])));
   }
 
