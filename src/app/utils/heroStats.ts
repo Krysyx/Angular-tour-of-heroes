@@ -1,1 +1,1 @@
-export default ["name", "HP", "mana", "spellpower"];
+export default ["name", "hp", "mana", "spellpower"];

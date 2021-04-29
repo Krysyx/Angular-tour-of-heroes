@@ -6,8 +6,8 @@
       <span class="hero-keys">{{ input.toUpperCase() }} : </span>
       <input
         *ngIf="input !== 'name'; else required"
-        type="text"
-        formControlName="{{ input }}"
+        type="{{ getInputType(input) }}"
+        [formControlName]="input"
       />
       <ng-template #required>
         <input type="text" [formControlName]="input" required />
@@ -22,17 +22,6 @@
         <input type="text" [formControlName]="spell" />
       </label>
     </div>
-
-    <!-- <div formArrayName="downRanks">
-      <h3>Downranks :</h3>
-      <button class="add-downrank" (click)="addDownRank()">Add Downrank :</button>
-      <div *ngFor="let downRank of getDownRanks().controls; let index = index">
-        <label>
-          Rank :
-          <input type="text" [formControlName]="index" />
-        </label>
-      </div>
-    </div> -->
 
     <p>Form Status : {{ heroForm.status }}</p>
     <button class="submit-hero" type="submit" [disabled]="!heroForm.valid">Submit</button>

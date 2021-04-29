@@ -21,6 +21,7 @@ export class CustomService {
   }
 
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
+    console.log("HERO OBJECT BEFORE SENDING HTTP REQUEST : ", hero);
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
       .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));

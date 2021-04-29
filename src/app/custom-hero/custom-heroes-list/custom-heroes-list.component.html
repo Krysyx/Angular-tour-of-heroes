@@ -2,8 +2,17 @@
   <ul class="custom-heroes-list">
     <li class="custom-heroes-item" *ngFor="let hero of customHeroes">
       <div *ngFor="let item of hero | keyvalue">
-        <span class="custom-heroes-item-key">{{ item.key.toUpperCase() }}</span>
-        : {{ item.value || "Not defined yet" }}
+        <span class="custom-heroes-item-key">{{ item.key.toUpperCase() }}</span> :
+        <div *ngIf="isObject(item.value); then object; else string"></div>
+        <ng-template #object>
+          <div *ngFor="let nested of getSpells(item.value) | keyvalue">
+            <p>{{ capitalize(nested.key) }} :</p>
+            <p>{{ nested.value }}</p>
+          </div>
+        </ng-template>
+        <ng-template #string
+          ><span>{{ item.value || "Not defined yet" }}</span></ng-template
+        >
       </div>
     </li>
   </ul>

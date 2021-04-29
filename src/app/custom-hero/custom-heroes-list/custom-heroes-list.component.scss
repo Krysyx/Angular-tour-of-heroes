@@ -1,9 +1,15 @@
 .custom-heroes {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   &-list {
     text-decoration: none;
   }
 
   &-item {
+    border: 2px solid #42545c;
+    padding: 2rem;
+    border-radius: 5px;
     &-key {
       padding: 1rem;
       text-decoration: none;

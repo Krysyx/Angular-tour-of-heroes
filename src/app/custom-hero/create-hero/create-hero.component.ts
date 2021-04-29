@@ -2,7 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, Validators } from "@angular/forms";
 import { CustomHero } from "../../models/custom";
 import { CustomService } from "../../services/custom.service";
-import hs from "../../utils/heroStats";
+import stats from "../../utils/heroStats";
+import inputType from "../../utils/customHeroInputType";
 
 @Component({
   selector: "app-create-hero",
@@ -12,7 +13,7 @@ import hs from "../../utils/heroStats";
 export class CreateHeroComponent implements OnInit {
   heroForm = this.formBuilder.group({
     name: ["", Validators.required],
-    HP: [""],
+    hp: [""],
     spellpower: [""],
     mana: [""],
     spells: this.formBuilder.group({
@@ -23,7 +24,7 @@ export class CreateHeroComponent implements OnInit {
   });
 
   inputs: string[] = Object.keys(this.heroForm.controls).filter((key) =>
-    hs.includes(key)
+    stats.includes(key)
   );
 
   spells: string[] = Object.keys(this.heroForm.controls["spells"]["controls"]);
@@ -56,5 +57,9 @@ export class CreateHeroComponent implements OnInit {
 
   addDownRank() {
     this.getDownRanks().push(this.formBuilder.control(""));
+  }
+
+  getInputType(inputName: string) {
+    return inputType[inputName] ?? "text";
   }
 }

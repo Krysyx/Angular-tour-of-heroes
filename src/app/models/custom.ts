@@ -8,3 +8,8 @@ export interface CustomHero {
     defensive: string;
   };
 }
+
+export interface Spells {
+  offensive: string;
+  defensive: string;
+}
