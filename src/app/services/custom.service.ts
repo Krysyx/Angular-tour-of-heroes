@@ -21,7 +21,6 @@ export class CustomService {
   }
 
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
-    console.log("HERO OBJECT BEFORE SENDING HTTP REQUEST : ", hero);
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
       .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));
@@ -31,5 +30,11 @@ export class CustomService {
     return this.http
       .get<CustomHero[]>(`${api}/custom`, contentType)
       .pipe(catchError(this.errorHandler<CustomHero[]>("getCustomHeroes")));
+  }
+
+  getCustomHero(id: string): Observable<CustomHero> {
+    return this.http
+      .get<CustomHero>(`${api}/custom/${id}`)
+      .pipe(catchError(this.errorHandler<CustomHero>("getCustomHero")));
   }
 }

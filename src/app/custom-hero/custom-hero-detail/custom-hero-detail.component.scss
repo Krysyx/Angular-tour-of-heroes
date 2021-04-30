@@ -2,54 +2,48 @@
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  border: 2px solid #42545c;
+  padding: 2rem;
+  border-radius: 5px;
+  width: 350px;
+  margin-top: 1rem;
 
-  &-values {
+  &-container {
     display: flex;
     align-items: baseline;
+  }
+
+  &-key {
+    padding: 1rem;
+    text-decoration: none;
+    margin-top: 10px;
+    display: inline-block;
+    background-color: #42545c;
+    color: #fff;
+    border-radius: 4px;
   }
 
   &-list {
     text-decoration: none;
   }
 
-  &-item {
-    border: 2px solid #42545c;
-    padding: 2rem;
-    border-radius: 5px;
-    width: 350px;
+  &-value {
+    padding: 0.5rem;
+  }
 
-    &-value {
-      padding: 0.5rem;
-    }
+  &-object {
+    display: flex;
+    flex-direction: column;
 
-    &-object {
+    &-item {
       padding: 1px;
     }
-
-    &-container {
-      display: flex;
-      flex-direction: column;
-    }
-
-    &-key {
-      padding: 1rem;
-      text-decoration: none;
-      margin-top: 10px;
-      display: inline-block;
-      background-color: #42545c;
-      color: #fff;
-      border-radius: 4px;
-    }
   }
-}
-
-ul {
-  list-style-type: none;
 }
 
 button {
   width: 100px;
   padding: 1rem;
-  margin-left: 40px;
   cursor: pointer;
+  margin-top: 1rem;
 }

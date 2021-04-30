@@ -1,4 +1,6 @@
+import { Location } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
 import { CustomHero } from "src/app/models/custom";
 import { CustomService } from "src/app/services/custom.service";
 import capitalizeFirstChar from "src/app/utils/capitalizeFirstChar";
@@ -9,17 +11,22 @@ import capitalizeFirstChar from "src/app/utils/capitalizeFirstChar";
   styleUrls: ["./custom-hero-detail.component.scss"],
 })
 export class CustomHeroDetailComponent implements OnInit {
-  constructor(private customService: CustomService) {}
-  customHeroes: CustomHero[] = [];
+  constructor(
+    private customService: CustomService,
+    private location: Location,
+    private router: ActivatedRoute
+  ) {}
+  customHero: CustomHero;
+  customHeroId: string = this.router.snapshot.paramMap.get("id");
 
   ngOnInit(): void {
-    this.getCustomHeroes();
+    this.getCustomHero();
   }
 
-  getCustomHeroes() {
+  getCustomHero() {
     this.customService
-      .getCustomHeroes()
-      .subscribe((customHeroes) => (this.customHeroes = customHeroes));
+      .getCustomHero(this.customHeroId)
+      .subscribe((customHero) => (this.customHero = customHero));
   }
 
   isObject(item: string | Object) {
@@ -32,5 +39,9 @@ export class CustomHeroDetailComponent implements OnInit {
 
   capitalize(str: any): any {
     return capitalizeFirstChar(str);
+  }
+
+  goBack(): void {
+    this.location.back();
   }
 }

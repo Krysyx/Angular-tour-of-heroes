@@ -1,30 +1,25 @@
 <div class="custom-heroes">
-  <ul class="custom-heroes-list">
-    <li class="custom-heroes-item" *ngFor="let hero of customHeroes">
-      <div class="custom-heroes-values" *ngFor="let item of hero | keyvalue">
-        <span class="custom-heroes-item-key">{{ item.key.toUpperCase() }}</span>
-        <div *ngIf="isObject(item.value); then object; else string"></div>
-        <ng-template #object>
-          <div class="custom-heroes-item-container">
-            <div
-              class="custom-heroes-item-object"
-              *ngFor="let nested of getSpells(item.value) | keyvalue"
-            >
-              <div class="custom-heroes-item-values">
-                {{ capitalize(nested.key) }} :
-                {{ nested.value || "No " + nested.key + " spell yet" }}
-              </div>
-            </div>
-          </div>
-        </ng-template>
-        <ng-template #string>
-          <span class="custom-heroes-item-value">{{
-            item.value || "Not defined yet"
-          }}</span></ng-template
+  <div class="custom-heroes-container" *ngFor="let hero of customHero | keyvalue">
+    <span class="custom-heroes-key">{{ hero.key.toUpperCase() }}</span>
+    <div *ngIf="isObject(hero.value); then object; else string"></div>
+    <ng-template #object>
+      <div class="custom-heroes-object">
+        <div
+          class="custom-heroes-object-item"
+          *ngFor="let nested of getSpells(hero.value) | keyvalue"
         >
+          <div class="custom-heroes-object-values">
+            {{ capitalize(nested.key) }} :
+            {{ nested.value || "No " + nested.key + " spell yet" }}
+          </div>
+        </div>
       </div>
-    </li>
-  </ul>
-
-  <button>Go back</button>
+    </ng-template>
+    <ng-template #string>
+      <span class="custom-heroes-value">{{
+        hero.value || "Not defined yet"
+      }}</span></ng-template
+    >
+  </div>
 </div>
+<button (click)="goBack()">Back</button>
