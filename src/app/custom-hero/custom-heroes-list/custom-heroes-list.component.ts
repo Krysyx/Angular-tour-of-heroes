@@ -20,4 +20,15 @@ export class CustomHeroesListComponent implements OnInit {
       .getCustomHeroes()
       .subscribe((customHeroes) => (this.customHeroes = customHeroes));
   }
+
+  deleteCustomHero(customHeroId: string): void {
+    this.customService
+      .deleteCustomHero(customHeroId)
+      .subscribe(
+        () =>
+          (this.customHeroes = this.customHeroes.filter(
+            ({ id }) => !(id === customHeroId)
+          ))
+      );
+  }
 }

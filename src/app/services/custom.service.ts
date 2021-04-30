@@ -37,4 +37,14 @@ export class CustomService {
       .get<CustomHero>(`${api}/custom/${id}`)
       .pipe(catchError(this.errorHandler<CustomHero>("getCustomHero")));
   }
+
+  deleteCustomHero(id: string): Observable<any> {
+    return this.http.delete<CustomHero>(`${api}/custom/${id}`).pipe(
+      catchError((error: any, caught: any) => {
+        console.log("message");
+        console.error(error);
+        return of(caught as CustomHero);
+      })
+    );
+  }
 }

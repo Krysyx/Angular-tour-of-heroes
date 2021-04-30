@@ -5,6 +5,6 @@
     <a routerLink="/custom-heroes/{{ customHero.id }}">
       <span class="badge">{{ customHero.name }}</span></a
     >
-    <button class="delete">Delete</button>
+    <button class="delete" (click)="deleteCustomHero(customHero.id)">Delete</button>
   </li>
 </ul>
