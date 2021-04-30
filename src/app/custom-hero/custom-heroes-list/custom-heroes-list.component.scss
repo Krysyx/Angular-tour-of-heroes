@@ -49,11 +49,11 @@ input {
   font-size: 1rem;
   margin: 1rem 0 2rem 0;
   cursor: pointer;
-}
 
-.add-button:hover {
-  color: white;
-  background-color: #42545c;
+  &:hover {
+    color: white;
+    background-color: #42545c;
+  }
 }
 
 button.delete {
