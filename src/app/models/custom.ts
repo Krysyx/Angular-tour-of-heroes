@@ -1,4 +1,5 @@
 export interface CustomHero {
+  id: string;
   name: string;
   hp: number;
   spellpower: number;

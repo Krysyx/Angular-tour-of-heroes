@@ -12,6 +12,7 @@ import { HeroSearchComponent } from "./hero-search/hero-search.component";
 import { CreateHeroComponent } from "./custom-hero/create-hero/create-hero.component";
 import { EventEmitterComponent } from "./event-emitter/event-emitter.component";
 import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/custom-heroes-list.component";
+import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/custom-hero-detail.component";
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/cust
     CreateHeroComponent,
     EventEmitterComponent,
     CustomHeroesListComponent,
+    CustomHeroDetailComponent,
   ],
   imports: [
     BrowserModule,
