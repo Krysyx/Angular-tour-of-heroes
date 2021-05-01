@@ -5,46 +5,36 @@ import contentType from "../utils/contentType";
 import { api } from "../api/api";
 import { Observable, of } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { ToastService } from "angular-toastify";
+import { ErrorHandlerService } from "./error-handler.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class CustomService {
-  constructor(private http: HttpClient) {}
-
-  private errorHandler<T>(message: string) {
-    return (error: any, caught: any) => {
-      console.log(message);
-      console.error(error);
-      return of(caught as T);
-    };
-  }
+  constructor(private http: HttpClient, private errorService: ErrorHandlerService) {}
 
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
-      .pipe(catchError(this.errorHandler<CustomHero>("createCustomHero")));
+      .pipe(catchError(this.errorService.errorHandler<CustomHero>("createCustomHero")));
   }
 
   getCustomHeroes(): Observable<CustomHero[]> {
     return this.http
       .get<CustomHero[]>(`${api}/custom`, contentType)
-      .pipe(catchError(this.errorHandler<CustomHero[]>("getCustomHeroes")));
+      .pipe(catchError(this.errorService.errorHandler<CustomHero[]>("getCustomHeroes")));
   }
 
   getCustomHero(id: string): Observable<CustomHero> {
     return this.http
       .get<CustomHero>(`${api}/custom/${id}`)
-      .pipe(catchError(this.errorHandler<CustomHero>("getCustomHero")));
+      .pipe(catchError(this.errorService.errorHandler<CustomHero>("getCustomHero")));
   }
 
   deleteCustomHero(id: string): Observable<any> {
-    return this.http.delete<CustomHero>(`${api}/custom/${id}`).pipe(
-      catchError((error: any, caught: any) => {
-        console.log("message");
-        console.error(error);
-        return of(caught as CustomHero);
-      })
-    );
+    return this.http
+      .delete<CustomHero>(`${api}/custom/${id}`)
+      .pipe(catchError(this.errorService.errorHandler("deleteCustomHero")));
   }
 }

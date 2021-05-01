@@ -5,51 +5,44 @@ import { catchError, tap } from "rxjs/operators";
 import { api } from "../api/api";
 import { Hero } from "../models/hero";
 import contentType from "../utils/contentType";
+import { ErrorHandlerService } from "./error-handler.service";
 
 @Injectable({
   providedIn: "root",
 })
 export class HeroService {
-  constructor(private http: HttpClient) {}
-
-  private handleError<T>(message: string, result?: T) {
-    return (error: any) => {
-      console.error(error);
-      console.log(message);
-      return of(result as T);
-    };
-  }
+  constructor(private http: HttpClient, private errorService: ErrorHandlerService) {}
 
   getHeroes(): Observable<Hero[]> {
     return this.http
       .get<Hero[]>(`${api}/heroes`)
-      .pipe(catchError(this.handleError("getHeroes", [])));
+      .pipe(catchError(this.errorService.errorHandler<Hero[]>("getHeroes")));
   }
 
   getHero(id: string): Observable<any> {
     return this.http
       .get<Hero>(`${api}/heroes/${id}`)
-      .pipe(catchError(this.handleError(`getHero id=${id}`)));
+      .pipe(catchError(this.errorService.errorHandler(`getHero id=${id}`)));
   }
 
   add(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(`${api}/heroes/create`, hero, contentType).pipe(
       tap(({ id }: Hero) => console.log(`New hero added, id: ${id}`)),
-      catchError(this.handleError<Hero>("addHero"))
+      catchError(this.errorService.errorHandler<Hero>("addHero"))
     );
   }
 
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(`${api}/heroes/update`, hero, contentType).pipe(
       tap(() => console.log("HERO UPDATED")),
-      catchError(this.handleError("updateHero"))
+      catchError(this.errorService.errorHandler("updateHero"))
     );
   }
 
   delete(id: string): Observable<any> {
     return this.http
       .delete(`${api}/heroes/${id}`, contentType)
-      .pipe(catchError(this.handleError("deleteHero")));
+      .pipe(catchError(this.errorService.errorHandler("deleteHero")));
   }
 
   searchByName(term: string): Observable<any> {
@@ -61,7 +54,7 @@ export class HeroService {
               ? console.log(`Found ${results.length > 1 ? "heroes" : "a hero"} matching`)
               : console.log("No results")
           ),
-          catchError(this.handleError("searchByName"))
+          catchError(this.errorService.errorHandler("searchByName"))
         );
   }
 }

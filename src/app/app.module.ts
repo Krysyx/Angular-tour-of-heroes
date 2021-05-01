@@ -13,6 +13,7 @@ import { CreateHeroComponent } from "./custom-hero/create-hero/create-hero.compo
 import { EventEmitterComponent } from "./event-emitter/event-emitter.component";
 import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/custom-heroes-list.component";
 import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/custom-hero-detail.component";
+import { ToastService, AngularToastifyModule } from "angular-toastify";
 
 @NgModule({
   declarations: [
@@ -33,8 +34,9 @@ import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/cust
     HttpClientModule,
     ReactiveFormsModule,
     FormsModule,
+    AngularToastifyModule,
   ],
-  providers: [],
+  providers: [ToastService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

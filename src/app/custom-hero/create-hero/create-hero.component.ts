@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, Validators } from "@angular/forms";
-import { CustomHero } from "../../models/custom";
+import { ToastService } from "angular-toastify";
 import { CustomService } from "../../services/custom.service";
-import stats from "../../utils/heroStats";
 import inputType from "../../utils/customHeroInputType";
+import stats from "../../utils/heroStats";
 
 @Component({
   selector: "app-create-hero",
@@ -20,7 +20,6 @@ export class CreateHeroComponent implements OnInit {
       offensive: [""],
       defensive: [""],
     }),
-    // downRanks: this.formBuilder.array([this.formBuilder.control("")]),
   });
 
   inputs: string[] = Object.keys(this.heroForm.controls).filter((key) =>
@@ -29,14 +28,18 @@ export class CreateHeroComponent implements OnInit {
 
   spells: string[] = Object.keys(this.heroForm.controls["spells"]["controls"]);
 
-  constructor(private formBuilder: FormBuilder, private customService: CustomService) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private customService: CustomService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {}
 
   onSubmit(): void {
     this.customService
       .createCustomHero(this.heroForm.value)
-      .subscribe((customHero) => console.log("Hero created : ", customHero));
+      .subscribe(() => this.toastService.success("Hero successfully created"));
 
     this.heroForm.reset();
   }
