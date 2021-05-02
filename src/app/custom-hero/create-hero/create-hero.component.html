@@ -25,6 +25,18 @@
     </div>
 
     <p>Form Status : {{ heroForm.status }}</p>
-    <button class="submit-hero" type="submit" [disabled]="!heroForm.valid">Submit</button>
+    <div *ngIf="loader; then loading; else submit"></div>
   </form>
 </div>
+
+<ng-template #loading>
+  <button class="submit-hero" type="submit" [disabled]="loader">
+    Loading ...
+  </button></ng-template
+>
+
+<ng-template #submit>
+  <button class="submit-hero" type="submit" [disabled]="!heroForm.valid || loader">
+    Submit
+  </button>
+</ng-template>

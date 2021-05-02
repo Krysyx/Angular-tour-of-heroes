@@ -11,6 +11,7 @@ import stats from "../../utils/heroStats";
   styleUrls: ["./create-hero.component.scss"],
 })
 export class CreateHeroComponent implements OnInit {
+  loader = false;
   heroForm = this.formBuilder.group({
     name: ["", Validators.required],
     hp: [""],
@@ -37,9 +38,11 @@ export class CreateHeroComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.customService
-      .createCustomHero(this.heroForm.value)
-      .subscribe(() => this.toastService.success("Hero successfully created"));
+    this.loader = true;
+    this.customService.createCustomHero(this.heroForm.value).subscribe(() => {
+      this.loader = false;
+      this.toastService.success("Hero successfully created");
+    });
 
     this.heroForm.reset();
   }
