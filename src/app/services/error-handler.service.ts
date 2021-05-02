@@ -1,6 +1,7 @@
+import { HttpErrorResponse } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { ToastService } from "angular-toastify";
-import { of } from "rxjs";
+import { throwError } from "rxjs";
 
 @Injectable({
   providedIn: "root",
@@ -8,12 +9,11 @@ import { of } from "rxjs";
 export class ErrorHandlerService {
   constructor(private toastService: ToastService) {}
 
-  errorHandler<T>(message: string) {
-    return (error: any, caught: any) => {
-      console.log(message);
-      console.error(error);
-      this.toastService.error(error);
-      return of(caught as T);
+  errorHandler(method: string) {
+    return ({ error: { message } }: HttpErrorResponse) => {
+      console.error(message);
+      this.toastService.error(message);
+      return throwError(message);
     };
   }
 }

@@ -16,7 +16,7 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http
       .get<Hero[]>(`${api}/heroes`)
-      .pipe(catchError(this.errorService.errorHandler<Hero[]>("getHeroes")));
+      .pipe(catchError(this.errorService.errorHandler("getHeroes")));
   }
 
   getHero(id: string): Observable<any> {
@@ -28,7 +28,7 @@ export class HeroService {
   add(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(`${api}/heroes/create`, hero, contentType).pipe(
       tap(({ id }: Hero) => console.log(`New hero added, id: ${id}`)),
-      catchError(this.errorService.errorHandler<Hero>("addHero"))
+      catchError(this.errorService.errorHandler("addHero"))
     );
   }
 

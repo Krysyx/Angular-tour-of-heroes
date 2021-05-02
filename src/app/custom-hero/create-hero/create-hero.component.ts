@@ -39,12 +39,13 @@ export class CreateHeroComponent implements OnInit {
 
   onSubmit(): void {
     this.loader = true;
-    this.customService.createCustomHero(this.heroForm.value).subscribe(() => {
-      this.loader = false;
-      this.toastService.success("Hero successfully created");
-    });
-
-    this.heroForm.reset();
+    this.customService
+      .createCustomHero(this.heroForm.value)
+      .subscribe(({ name }) => {
+        this.heroForm.reset();
+        this.toastService.success(`Hero successfully created : ${name}`);
+      })
+      .add(() => (this.loader = false));
   }
 
   updateFields(): void {

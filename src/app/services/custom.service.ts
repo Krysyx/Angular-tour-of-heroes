@@ -1,11 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
+import { Observable } from "rxjs";
+import { catchError } from "rxjs/operators";
+import { api } from "../api/api";
 import { CustomHero } from "../models/custom";
 import contentType from "../utils/contentType";
-import { api } from "../api/api";
-import { Observable, of } from "rxjs";
-import { catchError } from "rxjs/operators";
-import { ToastService } from "angular-toastify";
 import { ErrorHandlerService } from "./error-handler.service";
 
 @Injectable({
@@ -17,19 +16,19 @@ export class CustomService {
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
-      .pipe(catchError(this.errorService.errorHandler<CustomHero>("createCustomHero")));
+      .pipe(catchError(this.errorService.errorHandler("createCustomHero")));
   }
 
   getCustomHeroes(): Observable<CustomHero[]> {
     return this.http
       .get<CustomHero[]>(`${api}/custom`, contentType)
-      .pipe(catchError(this.errorService.errorHandler<CustomHero[]>("getCustomHeroes")));
+      .pipe(catchError(this.errorService.errorHandler("getCustomHeroes")));
   }
 
   getCustomHero(id: string): Observable<CustomHero> {
     return this.http
       .get<CustomHero>(`${api}/custom/${id}`)
-      .pipe(catchError(this.errorService.errorHandler<CustomHero>("getCustomHero")));
+      .pipe(catchError(this.errorService.errorHandler("getCustomHero")));
   }
 
   deleteCustomHero(id: string): Observable<any> {
