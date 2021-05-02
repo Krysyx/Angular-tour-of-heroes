@@ -8,6 +8,7 @@ import { CustomService } from "src/app/services/custom.service";
   styleUrls: ["./custom-heroes-list.component.scss"],
 })
 export class CustomHeroesListComponent implements OnInit {
+  loader = false;
   customHeroes: CustomHero[] = [];
   constructor(private customService: CustomService) {}
 
@@ -16,9 +17,11 @@ export class CustomHeroesListComponent implements OnInit {
   }
 
   getCustomHeroes(): void {
-    this.customService
-      .getCustomHeroes()
-      .subscribe((customHeroes) => (this.customHeroes = customHeroes));
+    this.loader = true;
+    this.customService.getCustomHeroes().subscribe((customHeroes) => {
+      this.customHeroes = customHeroes;
+      this.loader = false;
+    });
   }
 
   deleteCustomHero(customHeroId: string): void {

@@ -1,16 +1,23 @@
-<h2>My custom heroes :</h2>
+<div class="loading-icon-container" *ngIf="loader; else customHeroesList">
+  <span class="loading-text">Loading ...</span>
+  <mat-icon aria-label="Loading icon">downloading</mat-icon>
+</div>
 
-<ul class="heroes">
-  <li *ngFor="let customHero of customHeroes">
-    <a routerLink="/custom-heroes/{{ customHero.id }}">
-      <span class="badge">{{ customHero.name }}</span></a
-    >
-    <button class="delete" (click)="deleteCustomHero(customHero.id)">Delete</button>
-  </li>
+<ng-template #customHeroesList>
+  <h2>My custom heroes :</h2>
 
-  <div>
-    <a routerLink="/custom-hero/create">
-      <button class="add-button" type="button">Create an hero</button>
-    </a>
-  </div>
-</ul>
+  <ul class="heroes">
+    <li *ngFor="let customHero of customHeroes">
+      <a routerLink="/custom-heroes/{{ customHero.id }}">
+        <span class="badge">{{ customHero.name }}</span></a
+      >
+      <button class="delete" (click)="deleteCustomHero(customHero.id)">Delete</button>
+    </li>
+
+    <div>
+      <a routerLink="/custom-hero/create">
+        <button class="add-button" type="button">Create an hero</button>
+      </a>
+    </div>
+  </ul>
+</ng-template>

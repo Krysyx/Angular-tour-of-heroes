@@ -14,6 +14,8 @@ import { EventEmitterComponent } from "./event-emitter/event-emitter.component";
 import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/custom-heroes-list.component";
 import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/custom-hero-detail.component";
 import { ToastService, AngularToastifyModule } from "angular-toastify";
+import { NoopAnimationsModule } from "@angular/platform-browser/animations";
+import { MatIconModule } from "@angular/material/icon";
 
 @NgModule({
   declarations: [
@@ -35,6 +37,8 @@ import { ToastService, AngularToastifyModule } from "angular-toastify";
     ReactiveFormsModule,
     FormsModule,
     AngularToastifyModule,
+    NoopAnimationsModule,
+    MatIconModule,
   ],
   providers: [ToastService],
   bootstrap: [AppComponent],
