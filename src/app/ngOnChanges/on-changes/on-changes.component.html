@@ -1,0 +1,9 @@
+<h2>Ng On Changes</h2>
+
+<div *ngIf="changes">
+  <ul>
+    <li *ngFor="let change of changes | keyvalue">
+      {{ change.key }} : {{ change.value }}
+    </li>
+  </ul>
+</div>

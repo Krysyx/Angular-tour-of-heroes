@@ -16,6 +16,8 @@ import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/cust
 import { ToastService, AngularToastifyModule } from "angular-toastify";
 import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
+import { OnChangesComponent } from "./ngOnChanges/on-changes/on-changes.component";
+import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +31,8 @@ import { MatIconModule } from "@angular/material/icon";
     EventEmitterComponent,
     CustomHeroesListComponent,
     CustomHeroDetailComponent,
+    OnChangesComponent,
+    TriggerComponent,
   ],
   imports: [
     BrowserModule,
