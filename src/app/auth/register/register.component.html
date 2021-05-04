@@ -1,24 +1,34 @@
 <h2>Create an account :</h2>
 
-<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+<form class="form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
   <div class="form-container" *ngFor="let input of registerForm.controls | keyvalue">
     <div *ngIf="isFormGroup(input.key); then location; else default"></div>
     <ng-template #default>
-      <label class="form-container-input">
-        <span class="register-key">{{ capitalize(input.key) }}</span>
-        <input type="text" [formControlName]="input.key" />
-      </label>
+      <div class="input-container">
+        <label class="input-container-item">
+          <span class="register-key">{{ capitalize(input.key) }}</span>
+          <input type="text" [formControlName]="input.key" />
+          <div class="form-errors" *ngIf="hasErrors(input.key)">
+            {{ getErrorMessage(input.key) }}
+          </div>
+        </label>
+      </div>
     </ng-template>
 
     <ng-template #location>
-      <label
-        class="form-container-input"
+      <div
+        class="input-container"
         *ngFor="let location of registerForm.controls[input.key]['controls'] | keyvalue"
         [formGroupName]="input.key"
       >
-        <span class="register-key">{{ capitalize(location.key) }}</span>
-        <input type="text" formControlName="{{ location.key }}" />
-      </label>
+        <label>
+          <span class="register-key">{{ capitalize(location.key) }}</span>
+          <input type="text" formControlName="{{ location.key }}" />
+        </label>
+      </div>
     </ng-template>
   </div>
+
+  <span>Status : {{ registerForm.status }}</span>
+  <button type="submit">Register</button>
 </form>
