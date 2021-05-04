@@ -1,0 +1,24 @@
+<h2>Create an account :</h2>
+
+<form (ngSubmit)="onSubmit()" [formGroup]="registerForm">
+  <div class="form-container" *ngFor="let input of registerForm.controls | keyvalue">
+    <div *ngIf="isFormGroup(input.key); then location; else default"></div>
+    <ng-template #default>
+      <label class="form-container-input">
+        <span class="register-key">{{ capitalize(input.key) }}</span>
+        <input type="text" [formControlName]="input.key" />
+      </label>
+    </ng-template>
+
+    <ng-template #location>
+      <label
+        class="form-container-input"
+        *ngFor="let location of registerForm.controls[input.key]['controls'] | keyvalue"
+        [formGroupName]="input.key"
+      >
+        <span class="register-key">{{ capitalize(location.key) }}</span>
+        <input type="text" formControlName="{{ location.key }}" />
+      </label>
+    </ng-template>
+  </div>
+</form>

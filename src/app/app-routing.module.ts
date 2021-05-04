@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { RegisterComponent } from "./auth/register/register.component";
 import { CreateHeroComponent } from "./custom-hero/create-hero/create-hero.component";
 import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/custom-hero-detail.component";
 import { CustomHeroesListComponent } from "./custom-hero/custom-heroes-list/custom-heroes-list.component";
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: "custom-heroes", component: CustomHeroesListComponent },
   { path: "on-changes", component: TriggerComponent },
   { path: "unsubscribe", component: UnsubscriptionComponent },
+  { path: "register", component: RegisterComponent },
 ];
 
 @NgModule({

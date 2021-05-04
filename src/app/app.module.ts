@@ -19,6 +19,7 @@ import { MatIconModule } from "@angular/material/icon";
 import { OnChangesComponent } from "./ngOnChanges/on-changes/on-changes.component";
 import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
 import { UnsubscriptionComponent } from './unsubscription/unsubscription.component';
+import { RegisterComponent } from './auth/register/register.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UnsubscriptionComponent } from './unsubscription/unsubscription.compone
     OnChangesComponent,
     TriggerComponent,
     UnsubscriptionComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
