@@ -18,6 +18,7 @@ import { NoopAnimationsModule } from "@angular/platform-browser/animations";
 import { MatIconModule } from "@angular/material/icon";
 import { OnChangesComponent } from "./ngOnChanges/on-changes/on-changes.component";
 import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
+import { UnsubscriptionComponent } from './unsubscription/unsubscription.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
     CustomHeroDetailComponent,
     OnChangesComponent,
     TriggerComponent,
+    UnsubscriptionComponent,
   ],
   imports: [
     BrowserModule,

@@ -36,4 +36,12 @@ export class CustomService {
       .delete<CustomHero>(`${api}/custom/${id}`)
       .pipe(catchError(this.errorService.errorHandler()));
   }
+
+  getObservable(): Observable<any> {
+    return new Observable((observer) => {
+      observer.next("Hello");
+      observer.next("World");
+      observer.complete();
+    });
+  }
 }
