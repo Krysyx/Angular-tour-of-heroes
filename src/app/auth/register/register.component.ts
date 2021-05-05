@@ -45,7 +45,9 @@ export class RegisterComponent implements OnInit {
 
   hasErrors(input: string): boolean {
     const control = this.registerForm.controls;
-    return control[input].errors && (control[input].pristine || control[input].touched);
+    console.log(control[input].pristine || control[input].touched);
+
+    return control[input].errors && (control[input].dirty || control[input].touched);
   }
 
   getErrorMessage(key: string): string {
