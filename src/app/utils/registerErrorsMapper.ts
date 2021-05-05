@@ -9,6 +9,7 @@ const CITY_ERROR_STATUS = "City is required";
 export default {
   username: USERNAME_ERROR_STATUS,
   password: PASSWORD_ERROR_STATUS,
+  confirmpassword: PASSWORD_ERROR_STATUS,
   email: EMAIL_ERROR_STATUS,
   address: ADDRESS_ERROR_STATUS,
   city: CITY_ERROR_STATUS,
