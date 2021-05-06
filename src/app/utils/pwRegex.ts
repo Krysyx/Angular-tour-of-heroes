@@ -1,1 +1,1 @@
-export default /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm;
+export default /^(?=.*\d)(?=.*[a-z])(?=.*[a-zA-Z]).{8,}$/gm;

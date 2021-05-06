@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { FormArray, FormBuilder, Validators } from "@angular/forms";
 import { ToastService } from "angular-toastify";
 import { CustomService } from "../../services/custom.service";
-import inputType from "../../utils/customHeroInputType";
+import inputType from "../../utils/inputTypes/customHero";
 import stats from "../../utils/heroStats";
 
 @Component({

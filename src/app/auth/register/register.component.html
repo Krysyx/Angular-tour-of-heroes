@@ -7,7 +7,7 @@
       <div class="input-container">
         <label class="input-container-item">
           <span class="register-key">{{ capitalize(input.key) }}</span>
-          <input type="text" [formControlName]="input.key" />
+          <input [type]="getInputTypes(input.key)" [formControlName]="input.key" />
           <div class="form-errors" *ngIf="hasErrors(input.key)">
             {{ getErrorMessage(input.key) }}
           </div>
@@ -23,7 +23,7 @@
       >
         <label>
           <span class="register-key">{{ capitalize(location.key) }}</span>
-          <input type="text" formControlName="{{ location.key }}" />
+          <input [type]="getInputTypes(input.key)" formControlName="{{ location.key }}" />
         </label>
       </div>
     </ng-template>

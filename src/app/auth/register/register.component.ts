@@ -1,9 +1,12 @@
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, Validators } from "@angular/forms";
+import { ToastService } from "angular-toastify";
+import { RegisterService } from "src/app/services/register.service";
 import capitalize from "../../utils/capitalizeFirstChar";
 import pwRegex from "../../utils/pwRegex";
 import FORM_ERROR_HANDLER from "../../utils/registerErrorsMapper";
 import validatorsMapper from "../../utils/validatorsMapper";
+import inputTypes from "../../utils/inputTypes/register";
 
 @Component({
   selector: "app-register",
@@ -11,7 +14,11 @@ import validatorsMapper from "../../utils/validatorsMapper";
   styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private registerService: RegisterService,
+    private toastService: ToastService
+  ) {}
 
   registerForm = this.formBuilder.group({
     username: ["", validatorsMapper([Validators.minLength(3)])],
@@ -31,7 +38,9 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    console.log(this.registerForm.value);
+    this.registerService
+      .register(this.registerForm.value)
+      .subscribe((response) => this.toastService.success(response));
   }
 
   capitalize(value: string | unknown): string {
@@ -49,5 +58,9 @@ export class RegisterComponent implements OnInit {
 
   getErrorMessage(key: string): string {
     return FORM_ERROR_HANDLER[key];
+  }
+
+  getInputTypes(input: string): string {
+    return inputTypes[input] || "text";
   }
 }
