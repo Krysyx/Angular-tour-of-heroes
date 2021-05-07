@@ -14,6 +14,7 @@ export class RegisterService {
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) {}
 
   register(form: Register): Observable<string> {
+    console.log(form);
     return this.http
       .post<string>(`${api}/register/create`, form, contentType)
       .pipe(catchError(this.errorHandler.errorHandler()));
