@@ -47,7 +47,7 @@ export class RegisterComponent implements OnInit {
     return capitalize(value);
   }
 
-  isFormGroup(key: string): boolean {
+  isFormGroupLocation(key: string): boolean {
     return key == "location";
   }
 

@@ -2,7 +2,7 @@
 
 <form class="form" (ngSubmit)="onSubmit()" [formGroup]="registerForm">
   <div class="form-container" *ngFor="let input of registerForm.controls | keyvalue">
-    <div *ngIf="isFormGroup(input.key); then location; else default"></div>
+    <div *ngIf="isFormGroupLocation(input.key); then location; else default"></div>
     <ng-template #default>
       <div class="input-container">
         <label class="input-container-item">
