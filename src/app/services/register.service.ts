@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { Observable, Subscription } from "rxjs";
 import { Register } from "../models/register";
 import { api } from "../api/api";
 import contentType from "../utils/contentType";
@@ -14,9 +14,12 @@ export class RegisterService {
   constructor(private http: HttpClient, private errorHandler: ErrorHandlerService) {}
 
   register(form: Register): Observable<string> {
-    console.log(form);
     return this.http
       .post<string>(`${api}/register/create`, form, contentType)
       .pipe(catchError(this.errorHandler.errorHandler()));
+  }
+
+  verifyAccount(token: Subscription): void {
+    console.log("TOKEN IN REGISTER SERVICE : ", token);
   }
 }

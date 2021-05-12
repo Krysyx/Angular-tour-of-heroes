@@ -1,5 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { AccountValidationComponent } from "./auth/account-validation/account-validation.component";
 import { RegisterComponent } from "./auth/register/register.component";
 import { CreateHeroComponent } from "./custom-hero/create-hero/create-hero.component";
 import { CustomHeroDetailComponent } from "./custom-hero/custom-hero-detail/custom-hero-detail.component";
@@ -21,6 +22,7 @@ const routes: Routes = [
   { path: "on-changes", component: TriggerComponent },
   { path: "unsubscribe", component: UnsubscriptionComponent },
   { path: "register", component: RegisterComponent },
+  { path: "account/validation", component: AccountValidationComponent },
 ];
 
 @NgModule({

@@ -20,6 +20,7 @@ import { OnChangesComponent } from "./ngOnChanges/on-changes/on-changes.componen
 import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
 import { UnsubscriptionComponent } from './unsubscription/unsubscription.component';
 import { RegisterComponent } from './auth/register/register.component';
+import { AccountValidationComponent } from './auth/account-validation/account-validation.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { RegisterComponent } from './auth/register/register.component';
     TriggerComponent,
     UnsubscriptionComponent,
     RegisterComponent,
+    AccountValidationComponent,
   ],
   imports: [
     BrowserModule,
