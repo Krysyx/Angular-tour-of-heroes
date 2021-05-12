@@ -17,6 +17,8 @@ export class AccountValidationComponent implements OnInit {
       queryParams.get("token")
     );
 
-    this.registerService.verifyAccount(token);
+    this.registerService
+      .verifyAccount(token)
+      .subscribe((response) => console.log(response));
   }
 }

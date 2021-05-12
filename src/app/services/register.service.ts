@@ -19,7 +19,10 @@ export class RegisterService {
       .pipe(catchError(this.errorHandler.errorHandler()));
   }
 
-  verifyAccount(token: Subscription): void {
+  verifyAccount(token: Subscription): Observable<Subscription> {
     console.log("TOKEN IN REGISTER SERVICE : ", token);
+    return this.http
+      .get<Subscription>(`${api}/register/verify?token=${token}`, contentType)
+      .pipe(catchError(this.errorHandler.errorHandler()));
   }
 }
