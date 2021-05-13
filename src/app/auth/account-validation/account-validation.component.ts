@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { ToastService } from "angular-toastify";
 import { RegisterService } from "src/app/services/register.service";
 
 @Component({
@@ -8,17 +9,17 @@ import { RegisterService } from "src/app/services/register.service";
   styleUrls: ["./account-validation.component.scss"],
 })
 export class AccountValidationComponent implements OnInit {
-  constructor(private route: ActivatedRoute, private registerService: RegisterService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private registerService: RegisterService,
+    private toastService: ToastService
+  ) {}
 
   ngOnInit(): void {}
 
   activateAccount(): void {
-    const token = this.route.queryParamMap.subscribe((queryParams) =>
-      queryParams.get("token")
-    );
-
     this.registerService
-      .verifyAccount(token)
-      .subscribe((response) => console.log(response));
+      .verifyAccount(this.route.snapshot.queryParamMap.get("token"))
+      .subscribe((response) => this.toastService.success(response));
   }
 }
