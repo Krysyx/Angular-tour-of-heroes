@@ -14,6 +14,7 @@ import inputTypes from "../../utils/inputTypes/register";
   styleUrls: ["./register.component.scss"],
 })
 export class RegisterComponent implements OnInit {
+  loader: boolean = false;
   constructor(
     private formBuilder: FormBuilder,
     private registerService: RegisterService,
@@ -38,9 +39,11 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
+    this.loader = true;
     this.registerService
       .register(this.registerForm.value)
-      .subscribe((response) => this.toastService.success(response));
+      .subscribe((response) => this.toastService.success(response))
+      .add(() => (this.loader = false));
   }
 
   capitalize(value: string | unknown): string {

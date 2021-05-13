@@ -1,5 +1,15 @@
 <div class="activation">
-  <button class="activation-button" (click)="activateAccount()">
-    Click here to activate your account
-  </button>
+  <div *ngIf="loader; then loading; else default"></div>
+
+  <ng-template #loading>
+    <button class="activation-button" (click)="activateAccount()" [disabled]="loader">
+      Loading ...
+    </button>
+  </ng-template>
+
+  <ng-template #default>
+    <button class="activation-button" (click)="activateAccount()">
+      Click here to activate your account
+    </button>
+  </ng-template>
 </div>

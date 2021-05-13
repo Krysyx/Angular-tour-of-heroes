@@ -29,5 +29,13 @@
     </ng-template>
   </div>
 
-  <button class="register-button" type="submit">Register</button>
+  <div *ngIf="loader; then loading; else default"></div>
+
+  <ng-template #loading>
+    <button class="register-button" type="submit" [disabled]="loader">Loading ...</button>
+  </ng-template>
+
+  <ng-template #default>
+    <button class="register-button" type="submit">Register</button>
+  </ng-template>
 </form>
