@@ -21,6 +21,8 @@ import { TriggerComponent } from './ngOnChanges/trigger/trigger.component';
 import { UnsubscriptionComponent } from './unsubscription/unsubscription.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { AccountValidationComponent } from './auth/account-validation/account-validation.component';
+import { LoginComponent } from './auth/login/login.component';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -39,6 +41,8 @@ import { AccountValidationComponent } from './auth/account-validation/account-va
     UnsubscriptionComponent,
     RegisterComponent,
     AccountValidationComponent,
+    LoginComponent,
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,

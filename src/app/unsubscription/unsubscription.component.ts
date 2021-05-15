@@ -16,7 +16,6 @@ export class UnsubscriptionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    console.log("DESTROYING COMPONENT AND UNSUBSCRIBING OBSERVABLES");
     this.subscriptions.unsubscribe();
   }
 
