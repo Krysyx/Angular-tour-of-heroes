@@ -8,8 +8,18 @@
   </ng-template>
 
   <ng-template #default>
-    <button class="activation-button" (click)="activateAccount()">
-      Click here to activate your account
-    </button>
+    <ng-container *ngIf="expired; then expire; else notExpired"></ng-container>
+
+    <ng-template #notExpired>
+      <button class="activation-button" (click)="activateAccount()">
+        Click here to activate your account
+      </button>
+    </ng-template>
+
+    <ng-template #expire>
+      <button class="activation-button" (click)="refreshActivationLink()">
+        Send a new link to your email account
+      </button>
+    </ng-template>
   </ng-template>
 </div>

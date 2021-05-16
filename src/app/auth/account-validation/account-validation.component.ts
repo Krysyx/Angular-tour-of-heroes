@@ -11,6 +11,7 @@ import { RegisterService } from "src/app/services/register.service";
 export class AccountValidationComponent implements OnInit {
   valid = false;
   loader = false;
+  expired = false;
   token = this.route.snapshot.queryParamMap.get("token");
   constructor(
     private route: ActivatedRoute,
@@ -36,4 +37,6 @@ export class AccountValidationComponent implements OnInit {
       })
       .add(() => (this.loader = false));
   }
+
+  refreshActivationLink(): void {}
 }
