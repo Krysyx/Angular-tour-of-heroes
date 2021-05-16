@@ -38,5 +38,5 @@ export class AccountValidationComponent implements OnInit {
       .add(() => (this.loader = false));
   }
 
-  refreshActivationLink(): void {}
+  refreshToken(): void {}
 }
