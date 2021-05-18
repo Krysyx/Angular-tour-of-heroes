@@ -12,7 +12,6 @@ import { RegisterService } from "src/app/services/register.service";
 export class AccountValidationComponent implements OnInit {
   valid = false;
   loader = false;
-  user: Register;
   expired = false;
   refreshed = false;
   token = this.route.snapshot.queryParamMap.get("token");
@@ -35,8 +34,7 @@ export class AccountValidationComponent implements OnInit {
     this.registerService
       .verifyAccount(this.token)
       .subscribe(
-        ({ user, message }) => {
-          this.user = user;
+        ({ message }) => {
           this.toastService.success(message);
           this.router.navigate(["/login"]);
         },
@@ -52,7 +50,7 @@ export class AccountValidationComponent implements OnInit {
   refreshToken(): void {
     this.loader = true;
     this.registerService
-      .refreshToken(this.user)
+      .refreshToken(this.token)
       .subscribe((response) => {
         this.refreshed = true;
         this.toastService.success(response);

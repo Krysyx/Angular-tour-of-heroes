@@ -33,9 +33,9 @@ export class RegisterService {
       .pipe(catchError(this.errorService.handler()));
   }
 
-  refreshToken(user: Register): Observable<string> {
+  refreshToken(token: string): Observable<string> {
     return this.http
-      .post<string>(`${api}/refresh_token`, user, contentType)
+      .post<string>(`${api}/register/refresh_token?token=${token}`, contentType)
       .pipe(catchError(this.errorService.handler()));
   }
 }
