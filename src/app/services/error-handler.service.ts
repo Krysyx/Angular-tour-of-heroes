@@ -9,11 +9,11 @@ import { throwError } from "rxjs";
 export class ErrorHandlerService {
   constructor(private toastService: ToastService) {}
 
-  errorHandler() {
+  handler() {
     return ({ error }: HttpErrorResponse) => {
-      console.error(error);
-      this.toastService.error(error.message);
-      return throwError(error.message);
+      const err = JSON.parse(error);
+      this.toastService.error(err.message);
+      return throwError(err);
     };
   }
 }

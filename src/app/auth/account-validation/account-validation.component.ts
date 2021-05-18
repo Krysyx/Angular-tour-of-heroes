@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ToastService } from "angular-toastify";
+import { Register } from "src/app/models/register";
 import { RegisterService } from "src/app/services/register.service";
 
 @Component({
@@ -11,7 +12,9 @@ import { RegisterService } from "src/app/services/register.service";
 export class AccountValidationComponent implements OnInit {
   valid = false;
   loader = false;
+  user: Register;
   expired = false;
+  refreshed = false;
   token = this.route.snapshot.queryParamMap.get("token");
   constructor(
     private route: ActivatedRoute,
@@ -31,12 +34,29 @@ export class AccountValidationComponent implements OnInit {
     this.loader = true;
     this.registerService
       .verifyAccount(this.token)
-      .subscribe((response) => {
-        this.toastService.success(response);
-        this.router.navigate(["/login"]);
-      })
+      .subscribe(
+        ({ user, message }) => {
+          this.user = user;
+          this.toastService.success(message);
+          this.router.navigate(["/login"]);
+        },
+        ({ statusCode }) => {
+          if (statusCode === 403) {
+            this.expired = true;
+          }
+        }
+      )
       .add(() => (this.loader = false));
   }
 
-  refreshToken(): void {}
+  refreshToken(): void {
+    this.loader = true;
+    this.registerService
+      .refreshToken(this.user)
+      .subscribe((response) => {
+        this.refreshed = true;
+        this.toastService.success(response);
+      })
+      .add(() => (this.loader = false));
+  }
 }

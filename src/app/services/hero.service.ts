@@ -16,33 +16,33 @@ export class HeroService {
   getHeroes(): Observable<Hero[]> {
     return this.http
       .get<Hero[]>(`${api}/heroes`)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   getHero(id: string): Observable<any> {
     return this.http
       .get<Hero>(`${api}/heroes/${id}`)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   add(hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(`${api}/heroes/create`, hero, contentType).pipe(
       tap(({ id }: Hero) => console.log(`New hero added, id: ${id}`)),
-      catchError(this.errorService.errorHandler())
+      catchError(this.errorService.handler())
     );
   }
 
   updateHero(hero: Hero): Observable<any> {
     return this.http.put(`${api}/heroes/update`, hero, contentType).pipe(
       tap(() => console.log("HERO UPDATED")),
-      catchError(this.errorService.errorHandler())
+      catchError(this.errorService.handler())
     );
   }
 
   delete(id: string): Observable<any> {
     return this.http
       .delete(`${api}/heroes/${id}`, contentType)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   searchByName(term: string): Observable<any> {
@@ -54,7 +54,7 @@ export class HeroService {
               ? console.log(`Found ${results.length > 1 ? "heroes" : "a hero"} matching`)
               : console.log("No results")
           ),
-          catchError(this.errorService.errorHandler())
+          catchError(this.errorService.handler())
         );
   }
 }

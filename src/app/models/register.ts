@@ -10,3 +10,8 @@ export interface Register {
   phone: number;
   username: string;
 }
+
+export interface ValidatedAccount {
+  user: Register;
+  message: string;
+}

@@ -16,25 +16,25 @@ export class CustomService {
   createCustomHero(hero: CustomHero): Observable<CustomHero> {
     return this.http
       .post<CustomHero>(`${api}/custom/create`, hero, contentType)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   getCustomHeroes(): Observable<CustomHero[]> {
     return this.http
       .get<CustomHero[]>(`${api}/custom`, contentType)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   getCustomHero(id: string): Observable<CustomHero> {
     return this.http
       .get<CustomHero>(`${api}/custom/${id}`)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   deleteCustomHero(id: string): Observable<any> {
     return this.http
       .delete<CustomHero>(`${api}/custom/${id}`)
-      .pipe(catchError(this.errorService.errorHandler()));
+      .pipe(catchError(this.errorService.handler()));
   }
 
   getObservable(): Observable<any> {
