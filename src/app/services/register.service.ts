@@ -27,9 +27,9 @@ export class RegisterService {
       .pipe(catchError(this.errorService.handler()));
   }
 
-  verifyTokenValidity(token: string): Observable<boolean> {
+  verifyTokenValidity(token: string): Observable<string> {
     return this.http
-      .get<boolean>(`${api}/register/validity/${token}`, contentType)
+      .get<string>(`${api}/register/validity/${token}`, contentType)
       .pipe(catchError(this.errorService.handler()));
   }
 
