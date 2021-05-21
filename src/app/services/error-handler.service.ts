@@ -11,9 +11,9 @@ export class ErrorHandlerService {
 
   handler() {
     return ({ error }: HttpErrorResponse) => {
-      const err = JSON.parse(error);
-      this.toastService.error(err.message);
-      return throwError(err);
+      console.error(error);
+      this.toastService.error(error.message);
+      return throwError(error);
     };
   }
 }

@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subscription } from "rxjs";
-import { Register, ValidatedAccount } from "../models/register";
+import { Register, ValidatedAccount, ValidatedToken } from "../models/register";
 import { api } from "../api/api";
 import contentType from "../utils/contentType";
 import { catchError } from "rxjs/operators";
@@ -27,9 +27,9 @@ export class RegisterService {
       .pipe(catchError(this.errorService.handler()));
   }
 
-  verifyTokenValidity(token: string): Observable<string> {
+  verifyTokenValidity(token: string): Observable<ValidatedToken> {
     return this.http
-      .get<string>(`${api}/register/validity/${token}`, contentType)
+      .get<ValidatedToken>(`${api}/register/validity/${token}`, contentType)
       .pipe(catchError(this.errorService.handler()));
   }
 

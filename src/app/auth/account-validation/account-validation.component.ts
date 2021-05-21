@@ -10,7 +10,7 @@ import { RegisterService } from "src/app/services/register.service";
   styleUrls: ["./account-validation.component.scss"],
 })
 export class AccountValidationComponent implements OnInit {
-  valid = false;
+  isValid = false;
   loader = false;
   expired = false;
   refreshed = false;
@@ -23,10 +23,15 @@ export class AccountValidationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.registerService.verifyTokenValidity(this.token).subscribe((isValid) => {
-      !isValid && this.router.navigate(["/404"]);
-      this.valid = isValid;
-    });
+    this.registerService.verifyTokenValidity(this.token).subscribe(
+      ({ userId, isValid }) => {
+        this.isValid = isValid;
+        localStorage.setItem("user", userId);
+      },
+      (error) => {
+        this.router.navigate(["/404"]);
+      }
+    );
   }
 
   activateAccount(): void {

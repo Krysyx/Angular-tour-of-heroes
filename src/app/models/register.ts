@@ -15,3 +15,8 @@ export interface ValidatedAccount {
   user: Register;
   message: string;
 }
+
+export interface ValidatedToken {
+  userId: string;
+  isValid: boolean;
+}
