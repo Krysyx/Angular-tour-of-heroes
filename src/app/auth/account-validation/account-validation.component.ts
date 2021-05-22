@@ -57,6 +57,7 @@ export class AccountValidationComponent implements OnInit {
     this.registerService
       .refreshToken(this.token)
       .subscribe((response) => {
+        console.log(response);
         this.refreshed = true;
         this.toastService.success(response);
       })
