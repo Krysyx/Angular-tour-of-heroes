@@ -53,6 +53,7 @@ export class AccountValidationComponent implements OnInit {
   }
 
   refreshToken(): void {
+    console.log(this.loader);
     this.loader = true;
     this.registerService
       .refreshToken(this.token)
