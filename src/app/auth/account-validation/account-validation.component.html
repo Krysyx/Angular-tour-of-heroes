@@ -17,12 +17,8 @@
     </ng-template>
 
     <ng-template #expire>
-      <button
-        class="activation-button"
-        (click)="refreshToken()"
-        [disabled]="loader || refreshed"
-      >
-        {{ refreshed ? "Please verify your email" : "Send a new activation email" }}
+      <button class="activation-button" (click)="refreshToken()" [disabled]="loader">
+        {{ text }}
       </button>
     </ng-template>
   </ng-template>

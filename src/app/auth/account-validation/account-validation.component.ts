@@ -10,10 +10,10 @@ import { RegisterService } from "src/app/services/register.service";
   styleUrls: ["./account-validation.component.scss"],
 })
 export class AccountValidationComponent implements OnInit {
+  text = "Send a new activation email";
   isValid = false;
   loader = false;
   expired = false;
-  refreshed = false;
   token = this.route.snapshot.queryParamMap.get("token");
   constructor(
     private route: ActivatedRoute,
@@ -23,6 +23,7 @@ export class AccountValidationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    console.log(localStorage.getItem("zizi"));
     this.registerService.verifyTokenValidity(this.token).subscribe(
       ({ userId, isValid }) => {
         this.isValid = isValid;
@@ -53,12 +54,12 @@ export class AccountValidationComponent implements OnInit {
   }
 
   refreshToken(): void {
-    console.log(this.loader);
+    const id = localStorage.getItem("user");
     this.loader = true;
     this.registerService
-      .refreshToken(this.token)
+      .refreshToken(id)
       .subscribe((response) => {
-        this.refreshed = true;
+        this.text = "Please verify your email";
         this.toastService.success(response);
       })
       .add(() => (this.loader = false));
