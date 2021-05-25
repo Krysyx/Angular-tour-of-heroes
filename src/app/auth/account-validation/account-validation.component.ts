@@ -23,7 +23,6 @@ export class AccountValidationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    console.log(localStorage.getItem("zizi"));
     this.registerService.verifyTokenValidity(this.token).subscribe(
       ({ userId, isValid }) => {
         this.isValid = isValid;
