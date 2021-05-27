@@ -23,15 +23,15 @@ export class AccountValidationComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // this.registerService.verifyTokenValidity(this.token).subscribe(
-    //   ({ userId, isValid }) => {
-    //     this.isValid = isValid;
-    //     localStorage.setItem("user", userId);
-    //   },
-    //   (error) => {
-    //     this.router.navigate(["/404"]);
-    //   }
-    // );
+    this.registerService.verifyTokenValidity(this.token).subscribe(
+      ({ userId, isValid }) => {
+        this.isValid = isValid;
+        localStorage.setItem("user", userId);
+      },
+      (error) => {
+        this.router.navigate(["/404"]);
+      }
+    );
   }
 
   activateAccount(): void {
